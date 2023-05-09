@@ -1,0 +1,7 @@
+#!/bin/bash
+
+APP_BIN_DIR=$(dirname ${0})
+export TOOL_BASE_DIR=$(readlink -f ${APP_BIN_DIR}/..)
+
+# exec convert2vars.py
+(cd ${TOOL_BASE_DIR} > /dev/null; bin/convert2vars_cli.py "${@}")

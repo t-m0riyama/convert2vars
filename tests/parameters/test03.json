@@ -1,0 +1,8 @@
+{
+"varString": "{{varString|default('XYZ', True)}}",
+"varNumber": {{varNumber|default(123, True)}},
+"varDict": {"c1": "C1", "C2": 456},
+"varList": ["vm01", "vm02", "vm03"],
+"varEnvironment": "{{SHELL|default('', True)}}",
+"varCustomParameter": "{{ax|default('', True)}}"
+}

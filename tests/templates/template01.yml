@@ -1,0 +1,5 @@
+target_vms: {{TARGET_VMS}}
+
+vm_operates:
+  - task_type: take_snapshot
+  - task_type: shutdown
