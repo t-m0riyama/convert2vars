@@ -3,6 +3,7 @@ convert2vars
 
 A small tool for mutual conversion of JSON, YAML with embedded parameters.
 Parameter processing can take advantage of the powerful features of the Jinja2 template engine.
+JSON, which is often used in APIs, and YAML, which is adopted by popular platforms such as kubernetes (k8s) and ansible, can be converted to each other and dynamic parameter value editing can be performed.
 
 *This document has been translated into English by machine translation. Please note that some parts may be inaccurate.*
 
@@ -108,6 +109,34 @@ Parameter values can be specified in the following ways, or a combination of sev
   ```
   $ convert2vars convert -t k8s-deployment.yml -i k8s-parameter.json
   ```
+### Specifying complex parameter values
+Parameter values with complex structures such as lists and hashes can be specified in JSON format.
+Parameter values enclosed in [[] or {} are handled as JSON format.
+
+The following is an example of specifying a list and a hash as parameter values.
+
+```
+$ cat complex_parameters.yml
+instances: {{ TARGET_INSTANCES }}
+instance_properties: {{ INSTANCE_PROPERTIES }}
+
+$ convert2vars convert -e TARGET_INSTANCES='["vm01","vm02"]' -e INSTANCE_PROPERTIES='{"instance_type": "m1.small"}' -t complex_parameters.yml
+instances: ['vm01', 'vm02']
+instance_properties: {'instance_type': 'm1.small'}
+```
+
+Also, by using a parameter file, complex parameter values can be specified in YAML as well as JSON. The following results are the same as the previous example with the -e option.
+```
+$ cat complex_parameters.yml
+TARGET_INSTANCES:
+  - "vm01"
+  - "vm02"
+INSTANCE_PROPERTIES:
+  instance_type: "m1.small"
+
+$ convert2vars convert -i complex_parameters.yml -t complex_parameters.yml
+```
+
 
 ### Template engine support
   The filter, conditional branching, and iteration functions provided by Jinja2 can be used without modification. In the following example, since the parameter values are not explicitly specified, they are converted to the default values of 2 and 80 by Jinja2's default filter.

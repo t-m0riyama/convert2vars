@@ -1,8 +1,9 @@
 convert2vars
 =============
 
-パラメータが埋め込まれた、JSON, YAMLを相互変換するための小さなツールです。
-パラメータの処理は、Jinja2テンプレートエンジンの強力な機能が利用できます。
+convert2varsは、パラメータが埋め込まれたJSON, YAMLを相互変換するための小さなツールです。
+パラメータの処理は、Jinja2テンプレートエンジンによる強力な機能が利用できます。
+APIで利用することの多いJSONとkubernetes(k8s)やansibleなど人気のあるプラットフォームで採用されているYAMLを相互に変換し、動的なパラメータ値の編集を行うことができます。
 
 ## インストール
 ```
@@ -107,7 +108,37 @@ spec:
   $ convert2vars convert -t k8s-deployment.yml -i k8s-parameter.json
   ```
 
+### 複雑なパラメータ値の指定
+リストやハッシュといった複雑な構造を持ったパラメータ値をJSON形式で指定することができます。
+[]または{}で囲んだパラメータ値をJSON形式として扱います。
+
+以下はパラメータ値にリストとハッシュを指定した例です。
+
+```
+$ cat complex_parameters.yml
+instances: {{ TARGET_INSTANCES }}
+instance_properties: {{ INSTANCE_PROPERTIES }}
+
+$ convert2vars convert -e TARGET_INSTANCES='["vm01","vm02"]' -e INSTANCE_PROPERTIES='{"instance_type": "m1.small"}' -t complex_parameters.yml
+instances: ['vm01', 'vm02']
+instance_properties: {'instance_type': 'm1.small'}
+```
+
+また、パラメータファイルを利用することで、JSONだけでなくYAMLでも複雑なパラメータ値を指定することができます。以下の結果は、-eオプションを指定した前述の例と同じです。
+
+```
+$ cat complex_parameters.yml
+TARGET_INSTANCES:
+  - "vm01"
+  - "vm02"
+INSTANCE_PROPERTIES:
+  instance_type: "m1.small"
+
+$ convert2vars convert -i complex_parameters.yml -t complex_parameters.yml
+```
+
 ### テンプレートエンジンのサポート
+
 Jinja2の提供するフィルタや条件分岐・繰り返しといった機能がそのまま利用できます。以下の例では、明示的にパラメータ値を指定していないため、Jinja2のdefaultフィルタにより、デフォルト値である2と80に変換されます。
 
 ```
