@@ -8,7 +8,7 @@ import pathlib
 base_path = (pathlib.Path(__file__)).parent.parent
 
 __appname__ = 'convert2vars'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 @click.group(help='Load a template, embed the value of a variable, and output it.')
