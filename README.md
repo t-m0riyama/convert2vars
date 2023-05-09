@@ -2,7 +2,7 @@ convert2vars
 =============
 
 A small tool for mutual conversion of JSON, YAML with embedded parameters.
-Parameter processing can take advantage of the powerful features of the Jinja2 template engine.
+Parameter processing is handled by the powerful Jinja2 template engine.
 JSON, which is often used in APIs, and YAML, which is adopted by popular platforms such as kubernetes (k8s) and ansible, can be converted to each other and dynamic parameter value editing can be performed.
 
 *This document has been translated into English by machine translation. Please note that some parts may be inaccurate.*
