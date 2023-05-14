@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="convert2vars",
-    version="1.0.1",
+    version="1.0.2",
     install_requires=[
         "click",
         "python-dotenv",
