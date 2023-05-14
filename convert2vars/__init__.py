@@ -8,7 +8,7 @@ import pathlib
 base_path = (pathlib.Path(__file__)).parent.parent
 
 __appname__ = 'convert2vars'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 
 @click.group(help='Load a template, embed the value of a variable, and output it.')
@@ -43,7 +43,7 @@ def cli(ctx, config_file, debug):
     multiple=True,
     metavar='VARS',
     show_default=True,
-    help='Specify a variable and its value（ex. -e var1=X -e var2=y）')
+    help='Specify a variable and its value (ex. -e var1=X -e var2=y)')
 @click.option(
     '--use-environment',
     '-E',
