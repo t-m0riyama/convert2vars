@@ -7,6 +7,8 @@ JSON, which is often used in APIs, and YAML, which is adopted by popular platfor
 
 *This document has been translated into English by machine translation. Please note that some parts may be inaccurate.*
 
+[[Japanese]](./README-ja.md "Japanese README")
+
 ## Installation
 ```
 $ pip install convert2vars

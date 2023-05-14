@@ -5,6 +5,8 @@ convert2varsは、パラメータが埋め込まれたJSON, YAMLを相互変換�
 パラメータの処理は、Jinja2テンプレートエンジンによる強力な機能が利用できます。
 APIで利用することの多いJSONとkubernetes(k8s)やansibleなど人気のあるプラットフォームで採用されているYAMLを相互に変換し、動的なパラメータ値の編集を行うことができます。
 
+[[English]](./README.md "English README")
+
 ## インストール
 ```
 $ pip install convert2vars
